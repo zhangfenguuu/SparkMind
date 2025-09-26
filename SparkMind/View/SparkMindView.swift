@@ -1,0 +1,114 @@
+//
+//  SparkMindView.swift
+//  SparkMind
+//
+//  Created by 张峰 on 2025/9/25.
+//
+/*
+import SwiftUI
+
+struct SparkMindView: View {
+    
+    @StateObject private var vm = SparkMindViewModel()
+    
+    var body: some View {
+        
+        NavigationStack {
+            ZStack {
+                // 背景图片
+                if UIImage(named: "background") != nil {
+                    Image("background")
+                        .resizable()
+                        .scaleEffect(x: 1.5, y: 1.0, anchor: .center)
+                    //.scaledToFill()
+                    //.ignoresSafeArea()
+                        .opacity(0.3)
+                }
+                
+                // 列表内容
+                List {
+                    ForEach(vm.sections) { section in
+                        NavigationLink(destination: ItemListView(section: $vm.sections[vm.idx(for: section)])) {
+                            Text(section.title)
+                                .font(.title2)
+                                .bold()
+                                .padding()
+                        }
+                    }
+                    .onDelete(perform: vm.deleteSection)
+                }
+                .scrollContentBackground(.hidden) //  隐藏 List 默认背景
+            }
+            .navigationTitle("SparkMind")
+            .overlay(
+                Button(action: { vm.addSection() }) {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                }
+                    .padding(.bottom, 25),
+                alignment: .bottom
+            )
+        }
+    }
+}
+*/
+// Swift
+import SwiftUI
+
+struct SparkMindView: View {
+    
+    @StateObject private var vm = SparkMindViewModel()
+    
+    var body: some View {
+        
+        NavigationStack {
+            ZStack {
+                // 背景图片
+                if UIImage(named: "background") != nil {
+                    Image("background")
+                        .resizable()
+                        .scaleEffect(x: 1.5, y: 1.0, anchor: .center)
+                        .opacity(0.3)
+                }
+                
+                // 列表内容 — 使用 binding ForEach 以便直接编辑 title
+                List {
+                    ForEach($vm.sections) { $section in
+                        HStack {
+                            // 编辑标题（绑定到 section.title）
+                            TextField("Section title", text: $section.title)
+                                .font(.title2)
+                                .bold()
+                                .textFieldStyle(.plain)
+                            
+                            Spacer()
+                            
+                            // 单独的 NavigationLink 用于导航，避免与 TextField 编辑冲突
+                            NavigationLink {
+                                ItemListView(section: $section)
+                            } label: {
+                            }
+                        }
+                        .padding(.vertical, 6)
+                    }
+                    .onDelete(perform: vm.deleteSection)
+                }
+                .scrollContentBackground(.hidden) // 隐藏 List 默认背景
+            }
+            .navigationTitle("SparkMind")
+            .overlay(
+                Button(action: { vm.addSection() }) {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                }
+                    .padding(.bottom, 25),
+                alignment: .bottom
+            )
+        }
+    }
+}
+#Preview {
+    SparkMindView()
+}
