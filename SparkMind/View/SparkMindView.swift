@@ -69,7 +69,7 @@ struct SparkMindView: View {
                 if UIImage(named: "background") != nil {
                     Image("background")
                         .resizable()
-                        .scaleEffect(x: 1.5, y: 1.0, anchor: .center)
+                        .scaleEffect(x: 1.5, y: 0.7, anchor: .center)
                         .opacity(0.3)
                         .ignoresSafeArea()
             

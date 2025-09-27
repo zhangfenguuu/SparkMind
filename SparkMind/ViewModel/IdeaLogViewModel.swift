@@ -9,7 +9,11 @@ import Foundation
 import Combine
 
 final class IdeaLogViewModel: ObservableObject {
-    @Published var notes: [Note] = []
+    @Published var notes: [Note] = [] {
+        didSet {
+            save()
+        }
+    }
     private let storageKey = "IdeaLog.notes.v1"
 
     init() {

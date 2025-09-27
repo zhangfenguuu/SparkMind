@@ -14,10 +14,11 @@ struct BackgroundTextView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                if UIImage(named: "background") != nil {
-                    Image("background")
+                if UIImage(named: "thinking") != nil {
+                    Image("thinking")
                         .resizable()
                         .scaledToFill()
+                        .scaleEffect(x: 0.6, y: 1.2, anchor: .center)
                         .frame(width: geo.size.width, height: geo.size.height)
                         .clipped()
                 } else {
