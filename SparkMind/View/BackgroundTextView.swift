@@ -5,11 +5,12 @@
 //  Created by 张峰 on 2025/9/26.
 //
 
+// swift
 import SwiftUI
 
 struct BackgroundTextView: View {
     @Binding var item: SparkItem
-
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -25,29 +26,31 @@ struct BackgroundTextView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
-                    /*Text(item.title)
-                        .font(.largeTitle)
-                        .bold()*/
-                    TextField("Section title", text: $item.title)
+                    TextField("Title", text: $item.title)
                         .font(.largeTitle)
                         .bold()
                         .textFieldStyle(.plain)
-                    ScrollView {
-                        TextField("Section title", text: $item.body)
-                            //.font(.title2)
-                            //.bold()
-                            .textFieldStyle(.plain)
-                            .font(.title2)
-                            .padding(.bottom, 40)
+
+                    ZStack(alignment: .topLeading) {
+                        // Use custom clear-background editor so background image remains visible
+                        ClearTextEditor(text: $item.body, font: UIFont.preferredFont(forTextStyle: .title2))
+                            .frame(minHeight: 200)
+                            .cornerRadius(8)
+
+                        if item.body.isEmpty {
+                            Text("Body")
+                                .foregroundColor(.secondary)
+                                .padding(.top, 12)
+                                .padding(.leading, 6)
+                                .allowsHitTesting(false)
+                        }
                     }
                 }
                 .padding(24)
-                //.background(.ultraThinMaterial)
                 .cornerRadius(12)
                 .padding()
             }
         }
-        //.navigationTitle(item.title)
     }
 }
 

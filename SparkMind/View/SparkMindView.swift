@@ -59,6 +59,7 @@ import SwiftUI
 struct SparkMindView: View {
     
     @StateObject private var vm = SparkMindViewModel()
+    @FocusState private var focusedSectionID: UUID?
     
     var body: some View {
         
@@ -70,6 +71,8 @@ struct SparkMindView: View {
                         .resizable()
                         .scaleEffect(x: 1.5, y: 1.0, anchor: .center)
                         .opacity(0.3)
+                        .ignoresSafeArea()
+            
                 }
                 
                 // 列表内容 — 使用 binding ForEach 以便直接编辑 title
@@ -81,7 +84,10 @@ struct SparkMindView: View {
                                 .font(.title2)
                                 .bold()
                                 .textFieldStyle(.plain)
-                            
+                                .focused($focusedSectionID, equals: section.id)
+                                .onChange(of: section.title) { title in
+                                    vm.updateTitle(for: section.id, to: title)
+                                }
                             Spacer()
                             
                             // 单独的 NavigationLink 用于导航，避免与 TextField 编辑冲突
@@ -89,12 +95,24 @@ struct SparkMindView: View {
                                 ItemListView(section: $section)
                             } label: {
                             }
+                            .buttonStyle(.plain)
                         }
                         .padding(.vertical, 6)
+                        //.contentShape(Rectangle())
                     }
                     .onDelete(perform: vm.deleteSection)
                 }
                 .scrollContentBackground(.hidden) // 隐藏 List 默认背景
+                
+                if focusedSectionID != nil {
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            focusedSectionID = nil
+                            UIApplication.shared.endEditing()
+                        }
+                }
             }
             .navigationTitle("SparkMind")
             .overlay(
@@ -103,9 +121,10 @@ struct SparkMindView: View {
                         .resizable()
                         .frame(width: 60, height: 60)
                 }
-                    .padding(.bottom, 25),
+                .padding(.bottom, 25),
                 alignment: .bottom
             )
+            
         }
     }
 }

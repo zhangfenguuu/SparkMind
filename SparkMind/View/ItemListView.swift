@@ -7,44 +7,56 @@
 import SwiftUI
 struct ItemListView: View {
     @Binding var section: SparkSection
-
+    @FocusState private var focusedBackgroundTextID: UUID?
+    
     var body: some View {
-        List {
-            ForEach($section.items) { $item in
-                /*NavigationLink(item.title) {
-                    BackgroundTextView(item: item)
-                }*/
-                HStack {
-                    // 编辑标题（绑定到 section.title）
-                    TextField("Section title", text: $item.title)
-                        .font(.title2)
-                        .bold()
-                        .textFieldStyle(.plain)
-                    
-                    Spacer()
-                    
-                    // 单独的 NavigationLink 用于导航，避免与 TextField 编辑冲突
-                    NavigationLink {
-                        BackgroundTextView(item: $item)
-                    } label: {
-                        //Image(systemName: "arrow.right")
+        ZStack {
+            List {
+                ForEach($section.items) { $item in
+                    /*NavigationLink(item.title) {
+                     BackgroundTextView(item: item)
+                     }*/
+                    HStack {
+                        // 编辑标题（绑定到 section.title）
+                        TextField("Section title", text: $item.title)
+                            .font(.title2)
+                            .bold()
+                            .textFieldStyle(.plain)
+                            .focused($focusedBackgroundTextID, equals: section.id)
+                        Spacer()
+                        
+                        // 单独的 NavigationLink 用于导航，避免与 TextField 编辑冲突
+                        NavigationLink {
+                            BackgroundTextView(item: $item)
+                        } label: {
+                            //Image(systemName: "arrow.right")
                             //.foregroundColor(.secondary)
+                        }
+                        //.buttonStyle(.plain)
                     }
-                    //.buttonStyle(.plain)
+                    .padding(.vertical, 6)
                 }
-                .padding(.vertical, 6)
+                .onDelete(perform: deleteItem)
             }
-            .onDelete(perform: deleteItem)
-        }
-        .navigationTitle("导航2: \(section.title)")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { addItem() }) {
-                    Label("Add", systemImage: "plus")
+            .navigationTitle(" \(section.title)")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { addItem() }) {
+                        Label("Add", systemImage: "plus")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
                 }
             }
-            ToolbarItem(placement: .navigationBarLeading) {
-                EditButton()
+            if focusedBackgroundTextID != nil {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        focusedBackgroundTextID = nil
+                        UIApplication.shared.endEditing()
+                    }
             }
         }
     }

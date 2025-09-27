@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct SparkSection: Identifiable, Hashable {
+struct SparkSection: Identifiable, Codable, Hashable {
     var id = UUID()
     var title: String
     var items: [SparkItem] = []
 }
 
-struct SparkItem: Identifiable, Hashable {
+struct SparkItem: Identifiable, Codable, Hashable {
     var id = UUID()
     var title: String
     var body: String
 }
+
