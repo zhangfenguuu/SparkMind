@@ -14,16 +14,24 @@ struct BackgroundTextView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                if UIImage(named: "thinking") != nil {
-                    Image("thinking")
-                        .resizable()
-                        .scaledToFill()
-                        .scaleEffect(x: 0.6, y: 1.2, anchor: .center)
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        .clipped()
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    if UIImage(named: "thinking") != nil {
+                        Image("thinking")
+                            .resizable()
+                            .scaledToFill()
+                            .scaleEffect(x: 0.8, y: 1.1, anchor: .center)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .clipped()
+                    }
                 } else {
-                    LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom)
-                        .ignoresSafeArea()
+                    if UIImage(named: "thinking") != nil {
+                        Image("thinking")
+                            .resizable()
+                            .scaledToFill()
+                            .scaleEffect(x: 0.6, y: 1.2, anchor: .center)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .clipped()
+                    }
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
@@ -39,7 +47,7 @@ struct BackgroundTextView: View {
                             .cornerRadius(8)
 
                         if item.body.isEmpty {
-                            Text("Body")
+                            Text("")
                                 .foregroundColor(.secondary)
                                 .padding(.top, 12)
                                 .padding(.leading, 6)
@@ -56,5 +64,5 @@ struct BackgroundTextView: View {
 }
 
 #Preview {
-    BackgroundTextView(item: .constant(SparkItem(title: "示例标题", body: "这是示例内容。")))
+    BackgroundTextView(item: .constant(SparkItem(title: "示例标题", body: "这是示例内容。hahahahahhahahahahhahahahahahahahahah")))
 }

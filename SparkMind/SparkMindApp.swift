@@ -11,7 +11,11 @@ import SwiftUI
 struct SparkMindApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                iPadContentView()
+            } else {
+                iPhoneContentView()
+            }
         }
     }
 }

@@ -46,3 +46,7 @@ struct ClearTextEditor: UIViewRepresentable {
         }
     }
 }
+
+#Preview {
+    ClearTextEditor(text: .constant("This is a test of the ClearTextEditor.\nIt should have a transparent background."), font: UIFont.preferredFont(forTextStyle: .body))
+}

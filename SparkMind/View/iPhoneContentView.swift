@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct iPhoneContentView: View {
     var body: some View {
         TabView {
             SparkMindView()
@@ -22,7 +22,7 @@ struct ContentView: View {
                     Text("IdeaLog")
                 }
 
-            MeditationView()
+            iPhoneMeditationView()
                 .tabItem {
                     Image(systemName: "brain.head.profile")
                     Text("Meditation")
@@ -33,5 +33,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    iPhoneContentView()
 }

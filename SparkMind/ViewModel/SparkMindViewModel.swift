@@ -45,7 +45,7 @@ final class SparkMindViewModel: ObservableObject {
                 ]),
                 SparkSection(title: "思维模型", items: [
                     SparkItem(title: "问题 A", body: "这是一个引发思考的问题。"),
-                    SparkItem(title: "第一性原理（First Principles Thinking）", body: "方法：把复杂问题拆到最基本的事实，再从零开始重建。\n例子：马斯克造火箭时没接受“火箭太贵”的常识，而是问：火箭的材料实际成本是多少？结果发现远比成品便宜。\n作用：避免被传统思维框架限制。"),
+                    SparkItem(title: "第一性原理（First Principles Thinking）", body: "方法：把复杂问题拆到最基本的事实，再从零开始重建。或者从事物系统最基本的规律原理出发，解决问题。\n例子：马斯克造火箭时没接受“火箭太贵”的常识，而是问：火箭的材料实际成本是多少？结果发现远比成品便宜。\n作用：避免被传统思维框架限制。"),
                     SparkItem(title: "反向思考（Inversion）", body: "方法：不问“如何成功”，而问“怎样必然失败”，然后避免这些点。\n例子：不是问“如何提高会议效率”，而是问“怎么开会一定会低效”（比如人太多、没议程），再反过来优化。\n作用：跳出正向惯性，找到盲点。"),
                     SparkItem(title: "类比思维（Analogical Thinking）", body: "方法：把一个领域的经验借到另一个领域。\n例子：乔布斯把“书架”概念用在 iBooks 的界面里，直观又好用。\n作用：让看似无关的东西产生火花。"),
                     SparkItem(title: "系统思维（Systems Thinking）", body: "方法：把问题看成一个动态系统，关注关系、反馈和长期影响。\n例子：城市交通不仅是车的问题，还涉及公共交通、土地规划、人的行为。\n作用：帮助找到创新的杠杆点，而不是头痛医头。"),

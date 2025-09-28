@@ -80,7 +80,8 @@ import SwiftUI
 struct IdeaLogView: View {
     @StateObject private var vm = IdeaLogViewModel()
     @State private var draft = ""
-
+    @FocusState private var focusedSectionID: UUID?
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -114,10 +115,22 @@ struct IdeaLogView: View {
                                 vm.moveToTop(id: id)
                             }
                         }
+                        .focused($focusedSectionID, equals: note.id)
                     }
                     .onDelete(perform: vm.remove)
                 }
                 .listStyle(.plain)
+                
+                if focusedSectionID != nil {
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            focusedSectionID = nil
+                            UIApplication.shared.endEditing()
+                        }
+                }
+                
             }
             .navigationTitle("IdeaLog")
             .background(Color(.white).ignoresSafeArea())

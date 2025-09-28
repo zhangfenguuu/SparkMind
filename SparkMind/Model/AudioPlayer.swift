@@ -23,7 +23,19 @@ final class AudioPlayer: ObservableObject {
 
     deinit { cleanup() }
 
+    private func configureAudioSession() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.playback, mode: .default, options: [])
+            try session.setActive(true)
+        } catch {
+            print("Audio session setup failed:", error)
+        }
+    }
+    
     func play(url: URL) {
+        configureAudioSession()
+        
         if currentURL != url {
             cleanup()
             currentURL = url

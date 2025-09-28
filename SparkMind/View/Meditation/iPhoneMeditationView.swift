@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct MeditationView: View {
+struct iPhoneMeditationView: View {
     @StateObject private var player = AudioPlayer()
 
     private var tracks: [MeditationTrack] = {
@@ -114,5 +114,5 @@ struct MeditationView: View {
 }
 
 #Preview {
-    MeditationView()
+    iPhoneMeditationView()
 }
