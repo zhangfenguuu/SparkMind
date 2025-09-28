@@ -70,9 +70,6 @@ struct IdeaLogView: View {
     }
 }
 */
-#Preview {
-    IdeaLogView()
-}
 
 
 import SwiftUI
@@ -121,15 +118,15 @@ struct IdeaLogView: View {
                 }
                 .listStyle(.plain)
                 
-                if focusedSectionID != nil {
-                    Color.clear
-                        .contentShape(Rectangle())
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            focusedSectionID = nil
-                            UIApplication.shared.endEditing()
-                        }
-                }
+                
+                Color.clear
+                    .contentShape(Rectangle())
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        focusedSectionID = nil
+                        UIApplication.shared.endEditing()
+                    }
+                
                 
             }
             .navigationTitle("IdeaLog")
