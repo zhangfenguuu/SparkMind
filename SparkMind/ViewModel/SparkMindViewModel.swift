@@ -54,8 +54,11 @@ final class SparkMindViewModel: ObservableObject {
                     SparkItem(title: "反常识思维（Contrarian Thinking）", body: "方法：主动挑战“大家都认为正确的事”。\n例子：Airbnb 诞生于一个“谁会愿意睡在陌生人家里？”的反常识假设。\n作用：从“被忽视的角落”里挖出灵感。"),
                     SparkItem(title: "跨界迁移（Lateral Thinking", body: "方法：用跳跃、间接、奇怪的方式切入问题。\n例子：IDEO 设计购物车时，不只是问顾客，还去观察医院推车的消毒方法，得到全新思路。\n作用：突破直线思维。")
                 ]),
-                SparkSection(title: "思维训练", items: [
-                    SparkItem(title: "张八筒", body: "https://v.douyin.com/uwoP1cOx1T4/ 8@2.com :1pm")
+                SparkSection(title: "跨学科知识", items: [
+                    SparkItem(title: "", body: "")
+                ]),
+                SparkSection(title: "人物传记", items: [
+                    SparkItem(title: "", body: "")
                 ])
             ]
             

@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct iPadMeditationView: View {
-    @StateObject private var player = AudioPlayer()
+    @StateObject private var player = AudioPlayer.shared
     @State private var selectedTrack: MeditationTrack?
 
     private let tracks: [MeditationTrack] = {
