@@ -15,20 +15,20 @@ struct BackgroundTextView: View {
         GeometryReader { geo in
             ZStack {
                 if UIDevice.current.userInterfaceIdiom == .pad {
-                    if UIImage(named: "thinking") != nil {
-                        Image("thinking")
+                    if UIImage(named: "zf") != nil {
+                        Image("zf")
                             .resizable()
                             .scaledToFill()
-                            .scaleEffect(x: 0.8, y: 1.1, anchor: .center)
+                            .scaleEffect(x: 1, y: 1.2, anchor: .center)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .clipped()
                     }
                 } else {
-                    if UIImage(named: "thinking") != nil {
-                        Image("thinking")
+                    if UIImage(named: "zf") != nil {
+                        Image("zf")
                             .resizable()
                             .scaledToFill()
-                            .scaleEffect(x: 0.6, y: 1.2, anchor: .center)
+                            .scaleEffect(x: 1, y: 1.2, anchor: .center)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .clipped()
                     }
